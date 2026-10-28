@@ -65,6 +65,37 @@ section h3 {
   background-color: #f9f9f9;
 }
 
+.participants {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.participants h5 {
+  margin-bottom: 6px;
+  color: #1a237e;
+  font-size: 0.95rem;
+}
+
+.participants ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.participants li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.participants li span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .activity-card h4 {
   margin-bottom: 10px;
   color: #0066cc;
@@ -106,6 +137,31 @@ button {
 
 button:hover {
   background-color: #3949ab;
+}
+
+.participant-remove {
+  display: inline-grid;
+  flex: 0 0 28px;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #b42318;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.participant-remove:hover {
+  background-color: #ffebee;
+  color: #b42318;
+}
+
+.participant-remove:focus-visible {
+  outline: 2px solid #b42318;
+  outline-offset: 2px;
 }
 
 .message {
