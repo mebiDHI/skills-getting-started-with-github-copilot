@@ -43,37 +43,37 @@ activities = {
         "description": "Practice soccer skills and play team matches",
         "schedule": "Tuesdays, 3:30 PM - 5:00 PM",
         "max_participants": 24,
-        "participants": []
+        "participants": ["lucas@mergington.edu", "ava@mergington.edu"]
     },
     "Basketball Club": {
         "description": "Develop basketball skills and compete in friendly games",
         "schedule": "Thursdays, 3:30 PM - 5:00 PM",
         "max_participants": 20,
-        "participants": []
+        "participants": ["noah@mergington.edu", "mia@mergington.edu"]
     },
     "Painting Club": {
         "description": "Explore painting techniques and create original artwork",
         "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
         "max_participants": 15,
-        "participants": []
+        "participants": ["ethan@mergington.edu", "isabella@mergington.edu"]
     },
     "Drama Club": {
         "description": "Practice acting and prepare student theater performances",
         "schedule": "Mondays, 3:30 PM - 5:00 PM",
         "max_participants": 20,
-        "participants": []
+        "participants": ["mason@mergington.edu", "amelia@mergington.edu"]
     },
     "Debate Club": {
         "description": "Build public speaking and critical thinking skills through debate",
         "schedule": "Fridays, 3:30 PM - 5:00 PM",
         "max_participants": 16,
-        "participants": []
+        "participants": ["logan@mergington.edu", "harper@mergington.edu"]
     },
     "Science Club": {
         "description": "Explore scientific ideas through experiments and projects",
         "schedule": "Thursdays, 3:30 PM - 4:30 PM",
         "max_participants": 18,
-        "participants": []
+        "participants": ["owen@mergington.edu", "evelyn@mergington.edu"]
     }   
 }
 
@@ -109,3 +109,20 @@ def signup_for_activity(activity_name: str, email: str):
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
+
+
+@app.delete("/activities/{activity_name}/participants")
+def remove_participant(activity_name: str, email: str):
+    """Unregister a student from an activity"""
+    if activity_name not in activities:
+        raise HTTPException(status_code=404, detail="Activity not found")
+
+    activity = activities[activity_name]
+    if email not in activity["participants"]:
+        raise HTTPException(
+            status_code=404,
+            detail="Student is not signed up for this activity"
+        )
+
+    activity["participants"].remove(email)
+    return {"message": f"Unregistered {email} from {activity_name}"}
